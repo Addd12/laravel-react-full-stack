@@ -9,10 +9,9 @@ const StateContext = createContext({
 })
 
 export const ContextProvider = ({children}) => {
-    const [user, setUser] = useState({
-        name: "John"
-    });
-    const [token, _setToken] = useState(null);
+    const [user, setUser] = useState({});
+    //here we use the token that is in the local storage. if we set the useState to null, when we refresh we get logged out
+    const [token, _setToken] = useState(localStorage.getItem('ACCESS_TOKEN'));
 
     const setToken = (token) => {
         _setToken(token)

@@ -29,12 +29,13 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request){
        $credentials = $request->validated();
+       //we check if the credetials are wrong
        if(!Auth::attempt($credentials)){
             return response([
                 'message'=> 'Provided email address or password is incorrect'
             ]);
         } 
-        /**@var User $user */
+        /** @var User $user */
         $user = Auth::user();
         $token = $user->createToken('main')->plainTextToken;
         return response(compact('user', 'token'));
